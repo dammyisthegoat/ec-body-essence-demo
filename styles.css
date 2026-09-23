@@ -1,15 +1,13 @@
 :root {
   --ink: #171611;
-  --ink-soft: #575449;
-  --cream: #f5f0e8;
+  --ink-soft: #5d574f;
   --paper: #fbf8f2;
+  --cream: #f5f0e8;
   --sand: #ded2c1;
   --bronze: #a97743;
   --bronze-dark: #6e4825;
-  --green: #58644b;
   --line: rgba(23, 22, 17, 0.13);
-  --shadow: 0 25px 70px rgba(34, 26, 17, 0.12);
-  --radius: 28px;
+  --shadow: 0 28px 75px rgba(34, 26, 17, 0.14);
 }
 
 * {
@@ -29,6 +27,10 @@ body {
   overflow-x: hidden;
 }
 
+body.menu-open {
+  overflow: hidden;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -45,10 +47,6 @@ button {
   cursor: pointer;
 }
 
-/* =========================================
-   GENERAL
-========================================= */
-
 .wrap {
   width: min(1160px, calc(100% - 40px));
   margin-inline: auto;
@@ -56,15 +54,6 @@ button {
 
 .section {
   padding: 115px 0;
-}
-
-.eyebrow {
-  font-size: 0.7rem;
-  letter-spacing: 0.22em;
-  font-weight: 700;
-  color: var(--bronze-dark);
-  text-transform: uppercase;
-  margin: 0 0 18px;
 }
 
 /* =========================================
@@ -91,7 +80,7 @@ button {
   align-items: center;
   justify-content: space-between;
   padding: 0 max(20px, calc((100vw - 1160px) / 2));
-  background: rgba(251, 248, 242, 0.92);
+  background: rgba(251, 248, 242, 0.93);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   position: sticky;
@@ -236,6 +225,15 @@ button {
   padding: 105px 0 110px;
 }
 
+.eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  font-weight: 700;
+  color: var(--bronze-dark);
+  text-transform: uppercase;
+  margin: 0 0 18px;
+}
+
 .hero h1 {
   font-family: "Cormorant Garamond", serif;
   font-size: clamp(4.6rem, 10vw, 8rem);
@@ -366,7 +364,6 @@ button {
     transparent 0 18px,
     rgba(255, 255, 255, 0.035) 19px 21px
   );
-  pointer-events: none;
 }
 
 .hero-card-content {
@@ -737,8 +734,8 @@ button {
 
 .about {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
-  gap: 70px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+  gap: 72px;
   align-items: center;
 }
 
@@ -773,42 +770,33 @@ button {
 }
 
 /* =========================================
-   ABOUT ART
-   FIXED VERSION
+   ABOUT VISUAL
+   REAL PHOTO CARD
 ========================================= */
 
 .about-art {
   width: 100%;
-  max-width: 500px;
-  height: 500px;
+  max-width: 520px;
+  height: 560px;
   margin-inline: auto;
   position: relative;
   overflow: hidden;
-  border-radius: 32px;
+  border-radius: 30px;
   background:
-    radial-gradient(
-      circle at 78% 18%,
-      rgba(240, 216, 184, 0.32),
-      transparent 25%
-    ),
-    radial-gradient(
-      circle at 18% 82%,
-      rgba(88, 100, 73, 0.28),
-      transparent 26%
-    ),
     linear-gradient(
-      145deg,
-      #b6aa9b 0%,
-      #8b7c6c 46%,
-      #554c41 100%
-    );
+      180deg,
+      rgba(22, 17, 12, 0.04),
+      rgba(22, 17, 12, 0.65)
+    ),
+    url("https://images.unsplash.com/photo-1745327883290-1e9c6447b938?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=80&w=1400")
+      center center / cover no-repeat;
   box-shadow: var(--shadow);
+  isolation: isolate;
 }
 
 /*
-  Kill the old oversized artwork.
-  These were responsible for the huge cropped
-  shape seen in the screenshot.
+  Hide the old CSS artwork that was causing
+  the huge cropped arch.
 */
 
 .about-art .arch,
@@ -818,86 +806,95 @@ button {
 }
 
 /*
-  Add clean decorative circles instead.
+  Dark cinematic overlay.
 */
 
 .about-art::before {
   content: "";
   position: absolute;
-  width: 315px;
-  height: 315px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  top: 70px;
-  right: -105px;
-  z-index: 1;
-}
-
-.about-art::after {
-  content: "";
-  position: absolute;
-  width: 170px;
-  height: 170px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  bottom: 45px;
-  left: -55px;
-  background: rgba(255, 255, 255, 0.025);
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(18, 14, 10, 0.05) 20%,
+      rgba(18, 14, 10, 0.18) 48%,
+      rgba(18, 14, 10, 0.78) 100%
+    );
   z-index: 1;
 }
 
 /*
-  Reuse the existing .art-caption from your HTML,
-  but give it a proper contained layout.
+  Fine inner border.
+*/
+
+.about-art::after {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/*
+  Existing EC branding sits neatly at
+  the bottom of the photograph.
 */
 
 .about-art .art-caption {
   position: absolute;
-  left: 48px;
-  top: 52px;
-  z-index: 5;
+  left: 34px;
+  right: 34px;
+  bottom: 34px;
+  top: auto;
+  z-index: 4;
   display: flex;
   flex-direction: column;
-  color: #f9f2e6;
-  margin: 0;
+  color: #fffaf2;
 }
 
 .about-art .art-caption strong {
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(4.8rem, 8vw, 6rem);
-  line-height: 0.78;
+  font-size: clamp(4.5rem, 8vw, 6rem);
+  line-height: 0.72;
+  letter-spacing: -0.055em;
   font-weight: 600;
-  letter-spacing: -0.05em;
 }
 
 .about-art .art-caption em {
   font-style: normal;
   font-size: 0.63rem;
   letter-spacing: 0.3em;
-  margin-top: 12px;
+  margin-top: 13px;
 }
 
 .about-art .art-caption span {
-  font-size: 0.56rem;
-  letter-spacing: 0.24em;
+  font-size: 0.54rem;
+  letter-spacing: 0.23em;
   margin-top: 7px;
-  opacity: 0.68;
+  opacity: 0.72;
 }
 
 /*
-  Decorative leaf shapes generated with CSS.
+  Small bronze line above the logo.
+*/
+
+.about-art .art-caption::before {
+  content: "";
+  width: 52px;
+  height: 1px;
+  background: #d5a66d;
+  margin-bottom: 18px;
+}
+
+/*
+  Turn off the old decorative pseudo-element
+  that was attached to the caption.
 */
 
 .about-art .art-caption::after {
-  content: "";
-  position: absolute;
-  width: 125px;
-  height: 40px;
-  right: -235px;
-  top: 315px;
-  border-radius: 100% 0 100% 0;
-  background: rgba(73, 88, 64, 0.68);
-  transform: rotate(-28deg);
+  display: none !important;
 }
 
 /* =========================================
@@ -1226,7 +1223,7 @@ button {
   }
 
   .about-art {
-    width: min(100%, 500px);
+    width: min(100%, 520px);
     height: 500px;
   }
 
@@ -1359,35 +1356,44 @@ button {
     font-size: 2.75rem;
   }
 
-  /* =====================================
-     FIXED MOBILE ABOUT ART
-  ===================================== */
+  /*
+    Mobile photo card.
+    Clean rectangular presentation,
+    no oversized arch.
+  */
 
   .about-art {
     width: 100%;
     max-width: 430px;
-    height: 390px;
-    margin-inline: auto;
+    height: 420px;
     border-radius: 24px;
+    background-position: center center;
   }
 
   .about-art::before {
-    width: 230px;
-    height: 230px;
-    top: 72px;
-    right: -88px;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(18, 14, 10, 0.04) 15%,
+        rgba(18, 14, 10, 0.2) 45%,
+        rgba(18, 14, 10, 0.82) 100%
+      );
   }
 
   .about-art::after {
-    width: 130px;
-    height: 130px;
-    bottom: 42px;
-    left: -42px;
+    inset: 12px;
+    border-radius: 17px;
   }
 
   .about-art .art-caption {
-    left: 30px;
-    top: 34px;
+    left: 26px;
+    right: 26px;
+    bottom: 28px;
+  }
+
+  .about-art .art-caption::before {
+    margin-bottom: 14px;
+    width: 44px;
   }
 
   .about-art .art-caption strong {
@@ -1395,20 +1401,14 @@ button {
   }
 
   .about-art .art-caption em {
-    font-size: 0.55rem;
+    font-size: 0.53rem;
+    letter-spacing: 0.28em;
     margin-top: 10px;
   }
 
   .about-art .art-caption span {
-    font-size: 0.5rem;
+    font-size: 0.47rem;
     margin-top: 6px;
-  }
-
-  .about-art .art-caption::after {
-    width: 95px;
-    height: 32px;
-    right: -205px;
-    top: 235px;
   }
 
   .booking-form {
@@ -1469,27 +1469,22 @@ button {
   }
 
   .about-art {
-    height: 350px;
+    height: 380px;
   }
 
   .about-art .art-caption {
-    left: 25px;
-    top: 28px;
+    left: 22px;
+    right: 22px;
+    bottom: 24px;
   }
 
   .about-art .art-caption strong {
-    font-size: 3.85rem;
-  }
-
-  .about-art .art-caption::after {
-    right: -175px;
-    top: 210px;
-    transform: rotate(-25deg) scale(0.8);
+    font-size: 3.8rem;
   }
 }
 
 /* =========================================
-   ACCESSIBILITY
+   REDUCED MOTION
 ========================================= */
 
 @media (prefers-reduced-motion: reduce) {
