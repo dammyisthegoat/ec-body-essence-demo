@@ -29,10 +29,6 @@ body {
   overflow-x: hidden;
 }
 
-body.menu-open {
-  overflow: hidden;
-}
-
 a {
   color: inherit;
   text-decoration: none;
@@ -49,14 +45,26 @@ button {
   cursor: pointer;
 }
 
-img {
-  display: block;
-  max-width: 100%;
-}
+/* =========================================
+   GENERAL
+========================================= */
 
 .wrap {
   width: min(1160px, calc(100% - 40px));
   margin-inline: auto;
+}
+
+.section {
+  padding: 115px 0;
+}
+
+.eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  font-weight: 700;
+  color: var(--bronze-dark);
+  text-transform: uppercase;
+  margin: 0 0 18px;
 }
 
 /* =========================================
@@ -177,12 +185,12 @@ img {
 
 .menu-toggle {
   display: none;
+  width: 42px;
+  height: 42px;
   border: 0;
   background: transparent;
   color: var(--ink);
   font-size: 1.45rem;
-  width: 42px;
-  height: 42px;
 }
 
 /* =========================================
@@ -217,7 +225,7 @@ img {
     90deg,
     rgba(245, 240, 232, 0.98) 0%,
     rgba(245, 240, 232, 0.82) 45%,
-    rgba(245, 240, 232, 0.12) 100%
+    rgba(245, 240, 232, 0.08) 100%
   );
   z-index: 1;
 }
@@ -226,15 +234,6 @@ img {
   position: relative;
   z-index: 5;
   padding: 105px 0 110px;
-}
-
-.eyebrow {
-  font-size: 0.7rem;
-  letter-spacing: 0.22em;
-  font-weight: 700;
-  color: var(--bronze-dark);
-  text-transform: uppercase;
-  margin: 0 0 18px;
 }
 
 .hero h1 {
@@ -463,15 +462,15 @@ img {
 }
 
 /* =========================================
-   SECTIONS
+   SECTION HEADINGS
 ========================================= */
-
-.section {
-  padding: 115px 0;
-}
 
 .intro {
   padding-top: 125px;
+}
+
+.section-heading {
+  margin-bottom: 48px;
 }
 
 .section-heading h2,
@@ -491,10 +490,6 @@ img {
 .visit-card h2 i {
   color: var(--bronze-dark);
   font-weight: 500;
-}
-
-.section-heading {
-  margin-bottom: 48px;
 }
 
 /* =========================================
@@ -778,168 +773,131 @@ img {
 }
 
 /* =========================================
-   ABOUT ART - FIXED
+   ABOUT ART
+   FIXED VERSION
 ========================================= */
 
 .about-art {
   width: 100%;
-  max-width: 520px;
-  height: 540px;
+  max-width: 500px;
+  height: 500px;
   margin-inline: auto;
-  border-radius: 260px 260px 30px 30px;
-  background:
-    linear-gradient(
-      145deg,
-      #b0a18d 0%,
-      #817463 42%,
-      #5d5346 100%
-    );
   position: relative;
   overflow: hidden;
+  border-radius: 32px;
+  background:
+    radial-gradient(
+      circle at 78% 18%,
+      rgba(240, 216, 184, 0.32),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 18% 82%,
+      rgba(88, 100, 73, 0.28),
+      transparent 26%
+    ),
+    linear-gradient(
+      145deg,
+      #b6aa9b 0%,
+      #8b7c6c 46%,
+      #554c41 100%
+    );
   box-shadow: var(--shadow);
 }
+
+/*
+  Kill the old oversized artwork.
+  These were responsible for the huge cropped
+  shape seen in the screenshot.
+*/
+
+.about-art .arch,
+.about-art .stone,
+.about-art .plant {
+  display: none !important;
+}
+
+/*
+  Add clean decorative circles instead.
+*/
 
 .about-art::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(
-      circle at 30% 20%,
-      rgba(255, 255, 255, 0.12),
-      transparent 24%
-    ),
-    linear-gradient(
-      180deg,
-      transparent 60%,
-      rgba(15, 12, 8, 0.18) 100%
-    );
-  pointer-events: none;
-}
-
-/* Inner arch */
-.arch {
-  position: absolute;
-  width: 64%;
-  height: 72%;
-  left: 18%;
-  top: 10%;
-  border-radius: 50% 50% 0 0;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(249, 242, 230, 0.28),
-      rgba(40, 34, 28, 0.24)
-    );
-  border: 1px solid rgba(255, 255, 255, 0.25);
-}
-
-/* Decorative stones */
-.stone {
-  position: absolute;
+  width: 315px;
+  height: 315px;
   border-radius: 50%;
-  background: linear-gradient(
-    145deg,
-    #d8cbb9,
-    #7f6c57
-  );
-  box-shadow: 0 15px 28px rgba(35, 28, 19, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  top: 70px;
+  right: -105px;
+  z-index: 1;
 }
 
-.stone-one {
-  width: 145px;
-  height: 68px;
-  bottom: 56px;
-  left: 52px;
-  transform: rotate(-7deg);
-}
-
-.stone-two {
-  width: 110px;
-  height: 54px;
+.about-art::after {
+  content: "";
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.14);
   bottom: 45px;
-  right: 55px;
-  transform: rotate(10deg);
+  left: -55px;
+  background: rgba(255, 255, 255, 0.025);
+  z-index: 1;
 }
 
-/* Plant */
-.plant {
+/*
+  Reuse the existing .art-caption from your HTML,
+  but give it a proper contained layout.
+*/
+
+.about-art .art-caption {
   position: absolute;
-  right: 20px;
-  bottom: 20px;
-  width: 145px;
-  height: 275px;
-  z-index: 2;
-}
-
-.plant i {
-  position: absolute;
-  width: 78px;
-  height: 22px;
-  border-radius: 100%;
-  background: #4e5a42;
-  transform-origin: left center;
-}
-
-.plant i:nth-child(1) {
-  left: 56px;
-  top: 120px;
-  transform: rotate(-65deg);
-}
-
-.plant i:nth-child(2) {
-  left: 56px;
-  top: 126px;
-  transform: rotate(-28deg);
-}
-
-.plant i:nth-child(3) {
-  left: 56px;
-  top: 132px;
-  transform: rotate(8deg);
-}
-
-.plant i:nth-child(4) {
-  left: 56px;
-  top: 110px;
-  transform: rotate(-98deg);
-}
-
-.plant i:nth-child(5) {
-  left: 56px;
-  top: 110px;
-  transform: rotate(40deg);
-}
-
-/* About art text */
-.art-caption {
-  position: absolute;
-  left: 32px;
-  top: 34px;
+  left: 48px;
+  top: 52px;
+  z-index: 5;
   display: flex;
   flex-direction: column;
   color: #f9f2e6;
-  z-index: 3;
+  margin: 0;
 }
 
-.art-caption strong {
+.about-art .art-caption strong {
   font-family: "Cormorant Garamond", serif;
-  font-size: 5.5rem;
+  font-size: clamp(4.8rem, 8vw, 6rem);
   line-height: 0.78;
   font-weight: 600;
+  letter-spacing: -0.05em;
 }
 
-.art-caption em {
+.about-art .art-caption em {
   font-style: normal;
-  font-size: 0.58rem;
-  letter-spacing: 0.26em;
-  margin-top: 10px;
+  font-size: 0.63rem;
+  letter-spacing: 0.3em;
+  margin-top: 12px;
 }
 
-.art-caption span {
-  font-size: 0.55rem;
-  letter-spacing: 0.25em;
-  margin-top: 4px;
+.about-art .art-caption span {
+  font-size: 0.56rem;
+  letter-spacing: 0.24em;
+  margin-top: 7px;
+  opacity: 0.68;
+}
+
+/*
+  Decorative leaf shapes generated with CSS.
+*/
+
+.about-art .art-caption::after {
+  content: "";
+  position: absolute;
+  width: 125px;
+  height: 40px;
+  right: -235px;
+  top: 315px;
+  border-radius: 100% 0 100% 0;
+  background: rgba(73, 88, 64, 0.68);
+  transform: rotate(-28deg);
 }
 
 /* =========================================
@@ -1166,34 +1124,8 @@ img {
 ========================================= */
 
 .mobile-menu {
-  position: fixed;
-  inset: 86px 0 auto 0;
-  background: #1a1814;
-  color: #fff;
-  z-index: 45;
-  display: flex;
-  flex-direction: column;
-  padding: 26px 20px;
-  gap: 6px;
-  transform: translateY(-120%);
-  transition: transform 0.28s ease;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.18);
+  display: none;
 }
-
-.mobile-menu.open {
-  transform: translateY(0);
-}
-
-.mobile-menu a {
-  padding: 15px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  font-family: "Cormorant Garamond", serif;
-  font-size: 2rem;
-}
-
-/* =========================================
-   REVEAL ANIMATION
-========================================= */
 
 .reveal {
   opacity: 0;
@@ -1232,7 +1164,7 @@ img {
 }
 
 /* =========================================
-   MOBILE
+   TABLET / SMALL LAPTOP
 ========================================= */
 
 @media (max-width: 900px) {
@@ -1294,8 +1226,8 @@ img {
   }
 
   .about-art {
-    width: min(100%, 520px);
-    height: 520px;
+    width: min(100%, 500px);
+    height: 500px;
   }
 
   .booking-wrap {
@@ -1323,7 +1255,7 @@ img {
 }
 
 /* =========================================
-   SMALL PHONES
+   MOBILE
 ========================================= */
 
 @media (max-width: 600px) {
@@ -1355,10 +1287,6 @@ img {
 
   .brand-text em {
     font-size: 0.46rem;
-  }
-
-  .mobile-menu {
-    inset: 74px 0 auto 0;
   }
 
   .hero {
@@ -1431,53 +1359,56 @@ img {
     font-size: 2.75rem;
   }
 
-  /*
-    IMPORTANT:
-    The art now has a controlled size on phones.
-    This prevents the giant cropped arch issue.
-  */
+  /* =====================================
+     FIXED MOBILE ABOUT ART
+  ===================================== */
+
   .about-art {
     width: 100%;
-    height: 390px;
     max-width: 430px;
-    border-radius: 190px 190px 24px 24px;
+    height: 390px;
+    margin-inline: auto;
+    border-radius: 24px;
   }
 
-  .arch {
-    width: 62%;
-    height: 74%;
-    left: 19%;
-    top: 9%;
+  .about-art::before {
+    width: 230px;
+    height: 230px;
+    top: 72px;
+    right: -88px;
   }
 
-  .art-caption {
-    left: 24px;
-    top: 26px;
+  .about-art::after {
+    width: 130px;
+    height: 130px;
+    bottom: 42px;
+    left: -42px;
   }
 
-  .art-caption strong {
+  .about-art .art-caption {
+    left: 30px;
+    top: 34px;
+  }
+
+  .about-art .art-caption strong {
     font-size: 4.4rem;
   }
 
-  .stone-one {
-    width: 105px;
-    height: 52px;
-    left: 28px;
-    bottom: 34px;
+  .about-art .art-caption em {
+    font-size: 0.55rem;
+    margin-top: 10px;
   }
 
-  .stone-two {
-    width: 82px;
-    height: 42px;
-    right: 32px;
-    bottom: 28px;
+  .about-art .art-caption span {
+    font-size: 0.5rem;
+    margin-top: 6px;
   }
 
-  .plant {
-    transform: scale(0.72);
-    transform-origin: bottom right;
-    right: -3px;
-    bottom: 8px;
+  .about-art .art-caption::after {
+    width: 95px;
+    height: 32px;
+    right: -205px;
+    top: 235px;
   }
 
   .booking-form {
@@ -1496,10 +1427,36 @@ img {
   .footer-bottom {
     flex-direction: column;
   }
+
+  .mobile-menu {
+    position: fixed;
+    inset: 74px 0 auto 0;
+    background: #1a1814;
+    color: #fff;
+    z-index: 45;
+    display: flex;
+    flex-direction: column;
+    padding: 26px 20px;
+    gap: 6px;
+    transform: translateY(-120%);
+    transition: transform 0.28s ease;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.18);
+  }
+
+  .mobile-menu.open {
+    transform: translateY(0);
+  }
+
+  .mobile-menu a {
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 2rem;
+  }
 }
 
 /* =========================================
-   EXTRA-SMALL PHONES
+   VERY SMALL PHONES
 ========================================= */
 
 @media (max-width: 390px) {
@@ -1515,19 +1472,24 @@ img {
     height: 350px;
   }
 
-  .art-caption strong {
-    font-size: 3.8rem;
+  .about-art .art-caption {
+    left: 25px;
+    top: 28px;
   }
 
-  .plant {
-    transform: scale(0.58);
-    right: -18px;
-    bottom: -3px;
+  .about-art .art-caption strong {
+    font-size: 3.85rem;
+  }
+
+  .about-art .art-caption::after {
+    right: -175px;
+    top: 210px;
+    transform: rotate(-25deg) scale(0.8);
   }
 }
 
 /* =========================================
-   REDUCED MOTION
+   ACCESSIBILITY
 ========================================= */
 
 @media (prefers-reduced-motion: reduce) {
